@@ -29,6 +29,16 @@ You can also launch the web api directly from the console:
 dotnet run --project .\HackerNews.API.Host
 ```
 
+Swagger page to view the API:
+```
+http://localhost:5270/swagger/index.html
+```
+
+Example call to retrieve best 'n' stories from the HackerNews.API:
+```
+http://localhost:5270/api/beststories?maxStories=50
+```
+
 NOTE: You can also first launch from Visual Studio the HackerNews.API.Host project and use the 'HackerNews.API.Host.http' file to call the API with the given parameters
 
 ### Available app settings:
