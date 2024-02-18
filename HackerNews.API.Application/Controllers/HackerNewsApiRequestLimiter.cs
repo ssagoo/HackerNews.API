@@ -11,7 +11,7 @@ public interface IHackerNewsApiRequestLimiter
 
 /// <summary>
 /// A very basic request rate limiter using a counter to maintain current number of in-process requests
-/// Can also use a more advanced rate limiter stratergy as specified here <see href="https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-8.0"/>
+/// Can also use a more advanced rate limiter strategy as specified here <see href="https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-8.0"/>
 /// </summary>
 public class HackerNewsApiRequestLimiter : IHackerNewsApiRequestLimiter
 {
