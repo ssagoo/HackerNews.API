@@ -1,0 +1,19 @@
+@HackerNews.API.Host_HostAddress = http://localhost:5270
+
+# Single item request
+GET {{HackerNews.API.Host_HostAddress}}/api/beststories?maxStories=1
+Accept: application/json
+
+###
+
+# Short length request
+GET {{HackerNews.API.Host_HostAddress}}/api/beststories?maxStories=50
+Accept: application/json
+
+###
+
+# Large length request
+GET {{HackerNews.API.Host_HostAddress}}/api/beststories?maxStories=500
+Accept: application/json
+
+###

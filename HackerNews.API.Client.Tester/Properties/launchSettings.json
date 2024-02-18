@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HackerNews.API.Client.Tester": {
+      "commandName": "Project",
+      "commandLineArgs": "-c 10 -s 5"
+    }
+  }
+}
