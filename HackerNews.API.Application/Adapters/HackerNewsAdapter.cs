@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using HackerNews.API.Application.Data;
 using HackerNews.API.Application.Mappers;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace HackerNews.API.Application.Adapters;
@@ -24,7 +23,7 @@ public class HackerNewsAdapter : IHackerNewsAdapter
     private readonly IRestApiAdapter _hackerNewsApi;
     private readonly IHackerNewsStoryMapper _hackerNewsStoryMapper;
 
-    public HackerNewsAdapter(ILogger<HackerNewsAdapter> logger, [FromKeyedServices("hackerNewsAdapter")] IRestApiAdapter hackerNewsApi, IHackerNewsStoryMapper hackerNewsStoryMapper)
+    public HackerNewsAdapter(ILogger<HackerNewsAdapter> logger, IRestApiAdapter hackerNewsApi, IHackerNewsStoryMapper hackerNewsStoryMapper)
     {
         _logger = logger;
         _hackerNewsApi = hackerNewsApi;
