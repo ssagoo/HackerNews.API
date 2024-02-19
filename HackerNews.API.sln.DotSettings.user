@@ -1,10 +1,29 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=692b2b58_002Dc45b_002D49b4_002Dbb7f_002D5a27a5dc20e6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetBestStoriesAsync_With_ValidCount" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::05FFC486-D076-48F5-BE4D-A7286B82C978::net8.0::HackerNews.API.Application.IntegrationTests.Adapters.HackerNewsAdapterTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;And&gt;&#xD;
+      &lt;TestAncestor&gt;&#xD;
+        &lt;TestId&gt;NUnit3x::05FFC486-D076-48F5-BE4D-A7286B82C978::net8.0::HackerNews.API.Application.IntegrationTests.Adapters.HackerNewsAdapterTests&lt;/TestId&gt;&#xD;
+        &lt;TestId&gt;NUnit3x::05FFC486-D076-48F5-BE4D-A7286B82C978::net8.0::HackerNews.API.Application.IntegrationTests.Controllers.HackerNewsApiControllerTests.Given_HackerNewsAPIController_When_GetBestStories_WithSingleStoryAndNoErrors_Then_Return_SingleStory&lt;/TestId&gt;&#xD;
+        &lt;TestId&gt;NUnit3x::05FFC486-D076-48F5-BE4D-A7286B82C978::net8.0::HackerNews.API.Application.IntegrationTests.Controllers.HackerNewsApiControllerTests.Given_HackerNewsAPIController_When_GetBestStories_WithStoryCountAndNoErrors_Then_Return_Stories&lt;/TestId&gt;&#xD;
+        &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.Tests.Dispatchers.SingleThreadedDispatcherTests.Enqueue_WithRegisteredHandler_Returns_Response&lt;/TestId&gt;&#xD;
+        &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.Tests.Dispatchers.SingleThreadedDispatcherTests.Enqueue_WithNoRegisteredHandler_Returns_NullResponse&lt;/TestId&gt;&#xD;
+      &lt;/TestAncestor&gt;&#xD;
+      &lt;Not&gt;&#xD;
+        &lt;And&gt;&#xD;
+          &lt;Namespace&gt;HackerNews.API.Application.IntegrationTests.Adapters&lt;/Namespace&gt;&#xD;
+          &lt;Project Location="E:\Dev\Home\Projects\HackerNews.API\HackerNews.API.Application.IntegrationTests" Presentation="&amp;lt;HackerNews.API.Application.IntegrationTests&amp;gt;" /&gt;&#xD;
+        &lt;/And&gt;&#xD;
+      &lt;/Not&gt;&#xD;
+    &lt;/And&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.Tests.Dispatchers.SingleThreadedDispatcherTests.Enqueue_WithNoRegisteredHandler_Returns_ErrorResponse&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.IntegrationTests.Processors.HackerNewsProcessorTests.Handle_WithValidEventId_Calls_NewsAdapter&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.IntegrationTests.Processors.HackerNewsProcessorTests.Handle_WithInvalidEventId_Raises_Exception&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cebf35d9_002D9a60_002D4d01_002D8a8e_002D1abd6b74cadf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Map_WithValidFields" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cebf35d9_002D9a60_002D4d01_002D8a8e_002D1abd6b74cadf/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Map_WithValidFields" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.Tests.Mappers.HackerNewsStoryMapperTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::062DFAD1-85F2-42E7-A877-CF06A05A2BCB::net8.0::HackerNews.API.Application.Tests.Adapters.HackerNewsAdapterTests.GetBestStoriesAsync_With_SingleRequest&lt;/TestId&gt;&#xD;

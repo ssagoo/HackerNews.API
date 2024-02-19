@@ -28,7 +28,7 @@ namespace HackerNews.API.Application.Processors
             eventArgs.DispatchEvent.SetResponse(response);
         }
 
-        protected abstract Task<object> Handle(IEvent @event, CancellationToken cancellationToken, object request);
+        internal abstract Task<object> Handle(IEvent @event, CancellationToken cancellationToken, object request);
 
         public virtual Task Start(CancellationToken cancellationToken)
         {

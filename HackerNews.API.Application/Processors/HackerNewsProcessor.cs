@@ -1,8 +1,10 @@
-﻿using HackerNews.API.Application.Adapters;
+﻿using System.Runtime.CompilerServices;
+using HackerNews.API.Application.Adapters;
 using HackerNews.API.Application.Dispatchers;
 using HackerNews.API.Application.Events;
 using Microsoft.Extensions.DependencyInjection;
 
+[assembly: InternalsVisibleTo("HackerNews.API.Application.Tests")]
 namespace HackerNews.API.Application.Processors;
 
 public interface IHackerNewsProcessor : IProcessor
@@ -21,7 +23,7 @@ public class HackerNewsProcessor : BaseProcessor, IHackerNewsProcessor
         _hackerNewsAdapter = hackerNewsAdapter;
     }
 
-    protected override async Task<object> Handle(IEvent @event, CancellationToken cancellationToken, object request)
+    internal override async Task<object> Handle(IEvent @event, CancellationToken cancellationToken, object request)
     {
         switch (@event.EventId)
         {

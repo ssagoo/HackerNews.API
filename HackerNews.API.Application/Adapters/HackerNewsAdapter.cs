@@ -18,7 +18,7 @@ public interface IHackerNewsAdapter
 public class HackerNewsAdapter : IHackerNewsAdapter
 {
     private const int MaxStories = 500;
-    private const int StoriesRequestBatchSize = 10;
+    private const int StoriesRequestBatchSize = 10; // TODO: Add to app config
 
     private readonly ILogger<HackerNewsAdapter> _logger;
     private readonly IRestApiAdapter _hackerNewsApi;
@@ -41,6 +41,7 @@ public class HackerNewsAdapter : IHackerNewsAdapter
 
         _logger.LogInformation($"Getting '{topStoriesReduced.Length}' stories from hacker news API in batches of {StoriesRequestBatchSize}");
 
+        // Get data in batches of specified size: StoriesRequestBatchSize
         var newsItems = new ConcurrentBag<HackerNewsItem>();
         int currentTotal = 0;
         foreach (var batch in topStoriesReduced.Chunk(StoriesRequestBatchSize))
@@ -58,6 +59,7 @@ public class HackerNewsAdapter : IHackerNewsAdapter
             _logger.LogInformation($"Got '{currentTotal}' of '{topStoriesReduced.Length}', taking: {sw.ElapsedMilliseconds}ms");
         }
 
+        // ensure returned data has been ordered by Score descending
         return _hackerNewsStoryMapper.MapOut(newsItems)
             .OrderByDescending(n => n.Score)
             .ToList();

@@ -67,9 +67,9 @@ namespace HackerNews.API.Application.Controllers
             return StatusCode(statusCode, new HackerNewsApiRequestFailedDTO { Reason = reason });
         }
 
-        private string CurrentUserName => HttpContext.User?.Identity?.Name ?? "Anonymous";
+        public virtual string CurrentUserName => HttpContext.User?.Identity?.Name ?? "Anonymous";
 
-        public string ClientIPAddress
+        public virtual string ClientIPAddress
         {
             get
             {

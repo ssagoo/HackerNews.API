@@ -66,7 +66,11 @@ namespace HackerNews.API.Application.Dispatchers
                 {
                     try
                     {
-                        HandleEvent?.Invoke(this, new DispatcherEventArgs(dispatchEvent, _startupToken));
+                        if (HandleEvent == null)
+                        {
+                            throw new InvalidOperationException("No handler registered");
+                        }
+                        HandleEvent.Invoke(this, new DispatcherEventArgs(dispatchEvent, _startupToken));
                     }
                     catch (Exception e)
                     {
