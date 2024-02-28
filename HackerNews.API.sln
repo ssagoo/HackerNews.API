@@ -15,7 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.API.Client.Teste
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{CF7161F2-5636-4099-9836-ECD7CB199EE8}"
 	ProjectSection(SolutionItems) = preProject
+		.env = .env
 		.gitignore = .gitignore
+		docker-compose.override.yaml = docker-compose.override.yaml
+		docker-compose.yaml = docker-compose.yaml
 		README.md = README.md
 	EndProjectSection
 EndProject
