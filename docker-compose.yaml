@@ -2,7 +2,7 @@ version: '3'
 services:
   hackernews-api:
     container_name: HackerNews-API
-    image: ${DOCKER_REGISTRY-}hackernews-api
+    image: ${DOCKER_REGISTRY-}hackernews-api:${API_VERSION}
     build:
         context: .
         dockerfile: HackerNews.API.Host\Dockerfile
