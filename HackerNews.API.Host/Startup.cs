@@ -12,6 +12,7 @@ namespace HackerNews.API.Host;
 public class Startup
 {
     private readonly IConfiguration _config;
+    private readonly string _policyName = "CorsPolicy";
 
     public Startup(IConfiguration config)
     {
@@ -33,7 +34,19 @@ public class Startup
 
         services.AddSingleton<IHackerNewsEventDelegate, HackerNewsEventDelegateHandler>();
         services.AddSingleton<IProcessor, HackerNewsProcessor>();
-        
+
+        services.AddCors(o => o.AddPolicy(_policyName, builder =>
+        {
+            /*
+            builder.WithOrigins("http://localhost")
+                .AllowAnyHeader()
+                .AllowAnyMethod();*/
+
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        }));
+
         services.AddControllers().AddApplicationPart(typeof(HackerNewsApiController).Assembly);
 
         services.AddEndpointsApiExplorer();
@@ -50,6 +63,7 @@ public class Startup
         }
 
         app.UseRouting();
+        app.UseCors(_policyName);
 
         app.UseAuthentication();
         app.UseAuthorization();

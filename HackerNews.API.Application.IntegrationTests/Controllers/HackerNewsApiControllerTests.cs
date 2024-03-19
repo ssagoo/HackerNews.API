@@ -39,7 +39,7 @@ public class HackerNewsApiControllerTests
         
         var result = await apiController.GetBestStories(maxStories);
 
-        Assert.That(result.Value.Count, Is.EqualTo(maxStories));
+        Assert.That(result.Value.Results.Count, Is.EqualTo(maxStories));
     }
 
 

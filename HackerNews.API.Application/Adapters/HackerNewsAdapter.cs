@@ -18,6 +18,7 @@ public class HackerNewsAdapter : IHackerNewsAdapter
 {
     private const int MaxStories = 500;
     private const int StoriesRequestBatchSize = 10; // TODO: Add to app config
+    private const string TopStoriesRequestJson = "topstories.json";
 
     private readonly ILogger<HackerNewsAdapter> _logger;
     private readonly IRestApiAdapter _hackerNewsApi;
@@ -35,10 +36,10 @@ public class HackerNewsAdapter : IHackerNewsAdapter
     {
         bestStoriesCount = Math.Min(MaxStories, bestStoriesCount);
 
-        var topStories = await _hackerNewsApi.GetAsync<int[]>("topstories.json", cancellationToken);
+        var topStories = await _hackerNewsApi.GetAsync<int[]>(TopStoriesRequestJson, cancellationToken);
         var topStoriesReduced = bestStoriesCount == topStories.Length ? topStories : topStories.Take(bestStoriesCount).ToArray();
 
-        _logger.LogInformation($"Getting '{topStoriesReduced.Length}' stories from hacker news API in batches of {StoriesRequestBatchSize}");
+        _logger.LogInformation("Getting '{stories}' stories from hacker news API in batches of {size}", topStoriesReduced.Length, StoriesRequestBatchSize);
 
         // Get data in batches of specified size: StoriesRequestBatchSize
         var newsItems = new ConcurrentBag<HackerNewsItem>();
@@ -55,7 +56,7 @@ public class HackerNewsAdapter : IHackerNewsAdapter
             currentTotal += batch.Length;
 
             sw.Stop();
-            _logger.LogInformation($"Got '{currentTotal}' of '{topStoriesReduced.Length}', taking: {sw.ElapsedMilliseconds}ms");
+            _logger.LogInformation("Got '{current}' of '{total}', taking: {time-taken}ms", currentTotal, topStoriesReduced.Length, sw.ElapsedMilliseconds);
         }
 
         // ensure returned data has been ordered by Score descending

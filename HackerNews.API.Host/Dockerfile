@@ -3,7 +3,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -20,6 +19,16 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./HackerNews.API.Host.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+
+# Default values for known public environment variables
+ENV API_PORT=8090
+ENV API_ALT_PORT=8100
+ENV SERVER_NAME=localhost
+ENV API_HOST_PORT=8090
+
+EXPOSE $API_PORT
+EXPOSE $API_ALT_PORT
+
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "HackerNews.API.Host.dll"]

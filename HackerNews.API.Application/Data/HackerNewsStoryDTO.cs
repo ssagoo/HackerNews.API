@@ -5,6 +5,7 @@
 /// </summary>
 public record HackerNewsStoryDTO
 {
+    public required int Id { get; init; }
     public required string Title { get; init; }
     public required string Uri { get; init; }
     public required string PostedBy { get; init; }

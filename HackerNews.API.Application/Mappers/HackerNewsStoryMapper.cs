@@ -18,6 +18,7 @@ public class HackerNewsStoryMapper : IHackerNewsStoryMapper
     {
         return newsItems.Select(item => new HackerNewsStoryDTO
         {
+            Id = item.id,
             Uri = item.url,
             PostedBy = item.by,
             Time = FromUnixTime(item.time),

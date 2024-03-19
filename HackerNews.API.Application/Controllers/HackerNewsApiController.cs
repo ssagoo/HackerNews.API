@@ -1,4 +1,5 @@
-﻿using HackerNews.API.Application.Data;
+﻿using System.Net;
+using HackerNews.API.Application.Data;
 using HackerNews.API.Application.Events;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -14,6 +15,7 @@ namespace HackerNews.API.Application.Controllers
     [Route("api")]
     public class HackerNewsApiController : ControllerBase
     {
+        private const int DefaultMaxStoriesCount = 50;
         private readonly ILogger<HackerNewsApiController> _logger;
         private readonly IHackerNewsEventDelegate _hackerNewsEventDelegate;
         private readonly IHackerNewsApiRequestLimiter _hackerNewsApiRequestLimiter;
@@ -26,25 +28,25 @@ namespace HackerNews.API.Application.Controllers
         }
 
         [HttpGet("beststories")]
-        public async Task<ActionResult<IList<HackerNewsStoryDTO>>> GetBestStories([FromQuery] int maxStories)
+        public async Task<ActionResult<GetBestStoriesResultDTO>> GetBestStories([FromQuery] int? maxStories)
         {
             _hackerNewsApiRequestLimiter.IncRequest(HackerNewsEvents.GetStoriesEventId);
             try
             {
                 if (!_hackerNewsApiRequestLimiter.CanAcceptRequestById(HackerNewsEvents.GetStoriesEventId))
                 {
-                    return GetStatusCode(StatusCodes.Status503ServiceUnavailable, "Hacker News API is busy, please try again later");
+                    throw GetErrorResponse(HttpStatusCode.ServiceUnavailable, "Hacker News API is busy, please try again later");
                 }
 
                 var currentUser = CurrentUserName;
-                var bestStories = await _hackerNewsEventDelegate.GetBestStories(currentUser, maxStories);
+                var bestStories = await _hackerNewsEventDelegate.GetBestStories(currentUser, maxStories.GetValueOrDefault(DefaultMaxStoriesCount));
                 if (bestStories == null)
                 {
                     return GetStatusCode(StatusCodes.Status503ServiceUnavailable, "Hacker News API is unavailable, please try again later");
                 }
 
                 _logger.LogInformation($"Successfully processed request for user: '{currentUser}' from: {ClientIPAddress}, returning ({bestStories.Count}) stories");
-                return new ActionResult<IList<HackerNewsStoryDTO>>(bestStories);
+                return new ActionResult<GetBestStoriesResultDTO>(new GetBestStoriesResultDTO{Results = bestStories });
             }
             catch (HttpRequestException e)
             {
@@ -54,7 +56,7 @@ namespace HackerNews.API.Application.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, $"Failed to handle request {nameof(GetBestStories)}, reason: {e.Message}");
-                return GetStatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                throw GetErrorResponse(HttpStatusCode.InternalServerError, e.Message, e);
             }
             finally
             {
@@ -65,6 +67,11 @@ namespace HackerNews.API.Application.Controllers
         private ObjectResult GetStatusCode(int statusCode, string reason)
         {
             return StatusCode(statusCode, new HackerNewsApiRequestFailedDTO { Reason = reason });
+        }
+
+        private Exception GetErrorResponse(HttpStatusCode statusCode, string reason, Exception innerException = null)
+        {
+            return new HttpRequestException(HttpRequestError.InvalidResponse, reason, innerException, statusCode);
         }
 
         public virtual string CurrentUserName => HttpContext.User?.Identity?.Name ?? "Anonymous";

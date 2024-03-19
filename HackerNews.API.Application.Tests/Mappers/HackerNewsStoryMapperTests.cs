@@ -19,6 +19,7 @@ namespace HackerNews.API.Application.Tests.Mappers
             Assert.That(result.Count, Is.EqualTo(1));
 
             var hackerNewsStoryDto = result[0];
+            Assert.That(hackerNewsStoryDto.Id, Is.EqualTo(hackerNewsItem.id));
             Assert.That(hackerNewsStoryDto.Title, Is.EqualTo(hackerNewsItem.title));
             Assert.That(hackerNewsStoryDto.Uri, Is.EqualTo(hackerNewsItem.url));
             Assert.That(hackerNewsStoryDto.PostedBy, Is.EqualTo(hackerNewsItem.by));
@@ -39,6 +40,7 @@ namespace HackerNews.API.Application.Tests.Mappers
             Assert.That(result.Count, Is.EqualTo(1));
 
             var hackerNewsStoryDto = result[0];
+            Assert.That(hackerNewsStoryDto.Id, Is.EqualTo(hackerNewsItem.id));
             Assert.That(hackerNewsStoryDto.Title, Is.EqualTo(hackerNewsItem.title));
             Assert.That(hackerNewsStoryDto.Uri, Is.EqualTo(hackerNewsItem.url));
             Assert.That(hackerNewsStoryDto.PostedBy, Is.EqualTo(hackerNewsItem.by));
