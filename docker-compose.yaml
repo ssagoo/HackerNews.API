@@ -1,8 +1,20 @@
-version: '3'
+version: '3.4'
 services:
-  hackernews-api:
-    container_name: HackerNews-API
-    image: ${DOCKER_REGISTRY-}hackernews-api:${API_VERSION}
-    build:
+  api:
+    build: 
         context: .
-        dockerfile: HackerNews.API.Host\Dockerfile
+        dockerfile: ./HackerNews.API.Host/Dockerfile
+    
+  web:
+    build:
+        context: ./HackerNews.ReactWebUI
+        dockerfile: ./Dockerfile
+    tty: true
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 3.10.0.0/16
+          gateway: 3.10.0.1

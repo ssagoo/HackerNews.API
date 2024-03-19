@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{CF7161F2-5
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HackerNews.ReactWebUI", "HackerNews.ReactWebUI\HackerNews.ReactWebUI.esproj", "{5087AF49-6C2E-4052-96E4-38A58A883901}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,12 @@ Global
 		{061CA514-CA76-4D37-8E23-991727D5ED32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{061CA514-CA76-4D37-8E23-991727D5ED32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{061CA514-CA76-4D37-8E23-991727D5ED32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5087AF49-6C2E-4052-96E4-38A58A883901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5087AF49-6C2E-4052-96E4-38A58A883901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5087AF49-6C2E-4052-96E4-38A58A883901}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5087AF49-6C2E-4052-96E4-38A58A883901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5087AF49-6C2E-4052-96E4-38A58A883901}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5087AF49-6C2E-4052-96E4-38A58A883901}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

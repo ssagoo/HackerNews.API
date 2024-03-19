@@ -1,9 +1,20 @@
-version: '3'
+version: '3.4'
 services:
-  hackernews-api:
+  api:
+    container_name: api-container
+    image: ${DOCKER_REGISTRY-}hackernews-api:${API_VERSION-latest}
+    ports:
+      - ${API_HOST_PORT}:${API_PORT}
+    extra_hosts:
+      - "${SERVER_NAME}:${HOST_IP}"
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_HTTP_PORTS: ${API_PORT}
+    env_file: .env
+
+  web:
+    container_name: ui-container
+    image: ${DOCKER_REGISTRY-}hackernews-ui:${UI_VERSION-latest}
     ports:
-      - "8080:8080"
-    extra_hosts:
-      - "localhost:${HOST_IP}"
+      - ${UI_HOST_PORT}:${UI_PORT}
+    env_file: .env
